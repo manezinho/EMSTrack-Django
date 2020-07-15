@@ -106,6 +106,7 @@ class EquipmentSetItem(models.Model):
 
 class EquipmentHolder(models.Model):
 
+    # Add temporary foreign keys before data migration
     tmp_ambulance = models.ForeignKey('Ambulance',
                                       on_delete=models.CASCADE,
                                       null=True, blank=True,
