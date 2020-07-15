@@ -27,7 +27,7 @@ def migrate(apps, schema_editor):
     :return:
     """
 
-    EquipmentHolder = apps.get('equipment', 'EquipmentHolder')
+    EquipmentHolder = apps.get_model('equipment', 'EquipmentHolder')
     for e in EquipmentHolder.objects.all():
         if e.is_ambulance():
             e.tmp_ambulance = e.ambulance
