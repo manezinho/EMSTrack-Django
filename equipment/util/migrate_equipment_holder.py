@@ -29,9 +29,9 @@ def migrate(apps, schema_editor):
 
     EquipmentHolder = apps.get_model('equipment', 'EquipmentHolder')
     for e in EquipmentHolder.objects.all():
-        if e.is_ambulance():
+        if hasattr(e, 'ambulance'):
             e.tmp_ambulance = e.ambulance
-        elif e.is_hospital():
+        elif hasattr(e, 'hospital'):
             e.tmp_hospital = e.hospital
         else:
             continue
