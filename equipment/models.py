@@ -106,16 +106,14 @@ class EquipmentSetItem(models.Model):
 
 class EquipmentHolder(models.Model):
 
-    ambulance = models.ForeignKey('Ambulance',
-                                  on_delete=models.CASCADE,
-                                  null=True, blank=True,
-                                  verbose_name=_('ambulance'),
-                                  related_name='_ambulance')
-    hospital = models.ForeignKey('Hospital',
-                                 on_delete=models.CASCADE,
-                                 null=True, blank=True,
-                                 verbose_name=_('hospital'),
-                                 related_name='_hospital')
+    tmp_ambulance = models.ForeignKey('Ambulance',
+                                      on_delete=models.CASCADE,
+                                      null=True, blank=True,
+                                      verbose_name=_('ambulance'))
+    tmp_hospital = models.ForeignKey('Hospital',
+                                     on_delete=models.CASCADE,
+                                     null=True, blank=True,
+                                     verbose_name=_('hospital'))
 
     equipmentsets = models.ManyToManyField(EquipmentSet, blank=True, verbose_name=_('equipmentsets'))
 
