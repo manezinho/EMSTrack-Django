@@ -100,7 +100,7 @@ class EquipmentSetItem(models.Model):
     equipment = models.ForeignKey(Equipment,
                                   on_delete=models.CASCADE,
                                   verbose_name=_('equipment'))
-    options = JSONField(_('options'), default={})
+    options = JSONField(_('options'), default=dict)
 
     class Meta:
         unique_together = ('equipment_set', 'equipment',)
