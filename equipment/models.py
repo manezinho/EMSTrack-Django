@@ -110,15 +110,16 @@ class EquipmentHolder(models.Model):
     ambulance = models.ForeignKey('ambulance.Ambulance',
                                   on_delete=models.CASCADE,
                                   null=True, blank=True,
-                                  verbose_name=_('ambulance'),
-                                  related_name='+')
+                                  verbose_name=_('ambulance'))
+
     hospital = models.ForeignKey('hospital.Hospital',
                                  on_delete=models.CASCADE,
                                  null=True, blank=True,
-                                 verbose_name=_('hospital'),
-                                 related_name='+')
+                                 verbose_name=_('hospital'))
 
-    equipmentsets = models.ManyToManyField(EquipmentSet, blank=True, verbose_name=_('equipmentsets'))
+    equipmentset = models.ForeignKey(EquipmentSet,
+                                     on_delete=models.CASCADE,
+                                     verbose_name=_('equipmentset'))
 
     def is_hospital(self):
         return self.hospital is not None
