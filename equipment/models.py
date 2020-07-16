@@ -2,6 +2,7 @@ from enum import Enum
 
 from django.contrib.gis.db import models
 from django import forms
+from django.contrib.postgres.fields import JSONField
 from django.template.defaulttags import register
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -99,6 +100,7 @@ class EquipmentSetItem(models.Model):
     equipment = models.ForeignKey(Equipment,
                                   on_delete=models.CASCADE,
                                   verbose_name=_('equipment'))
+    options = JSONField(_('options'))
 
     class Meta:
         unique_together = ('equipment_set', 'equipment',)
