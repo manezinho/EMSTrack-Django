@@ -27,11 +27,11 @@ class EquipmentHolderCreateMixin:
         # Save form
         if equipmentholder_form.is_valid():
 
-            # assemble equipments in all equipmentsets
+            # assemble equipments in all equipmentset
             equipments = set()
-            for equipmentset in equipmentholder_form.cleaned_data['equipmentsets']:
-                for equipmentsetitem in equipmentset.equipmentsetitem_set.all():
-                    equipments.add(equipmentsetitem.equipment)
+            equipmentset = equipmentholder_form.cleaned_data['equipmentset']
+            for equipmentsetitem in equipmentset.equipmentsetitem_set.all():
+                equipments.add(equipmentsetitem.equipment)
 
             # wrap in atomic in case of errors
             with transaction.atomic():
@@ -74,13 +74,13 @@ class EquipmentHolderUpdateMixin:
         # Save form
         if equipmentholder_form.is_valid():
 
-            # assemble equipments in all equipmentsets not in current equipmentitems
+            # assemble equipments not in current equipmentitems
             equipmentitemset = self.object.equipmentholder.equipmentitem_set.all().values('equipment_id')
             equipments = set()
-            for equipmentset in equipmentholder_form.cleaned_data['equipmentsets']:
-                for equipment in equipmentset.equipmentsetitem_set\
-                        .exclude(equipment_id__in=equipmentitemset):
-                    equipments.add(equipment.equipment)
+            equipmentset = equipmentholder_form.cleaned_data['equipmentset']
+            for equipment in equipmentset.equipmentsetitem_set\
+                    .exclude(equipment_id__in=equipmentitemset):
+                equipments.add(equipment.equipment)
 
             # wrap in atomic in case of errors
             with transaction.atomic():

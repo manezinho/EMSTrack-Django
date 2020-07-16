@@ -750,8 +750,8 @@ msgid "equipment"
 msgstr "equipo"
 
 #: equipment/models.py:78
-msgid "equipmentsets"
-msgstr "juegosdeequipos"
+msgid "equipmentset"
+msgstr "juegosdeequipo"
 
 #: equipment/models.py:126
 msgid "value"

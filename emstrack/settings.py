@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django_json_widget',
     'jquery',
     'djangoformsetjs',
     'webpack_loader',

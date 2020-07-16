@@ -14,5 +14,6 @@ django-nose
 paho-mqtt
 django-formset-js
 django-webpack-loader
+django-json-widget
 uwsgi
 nexmo
