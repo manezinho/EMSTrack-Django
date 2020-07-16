@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from ambulance.models import Location, LocationType
-from equipment.models import EquipmentHolder
+# from equipment.models import EquipmentHolder
 from environs import Env
 
 env = Env()
@@ -13,9 +13,9 @@ env = Env()
 
 class Hospital(Location):
 
-    equipmentholder = models.OneToOneField(EquipmentHolder,
-                                           on_delete=models.CASCADE,
-                                           verbose_name=_('equipmentholder'))
+    # equipmentholder = models.OneToOneField(EquipmentHolder,
+    #                                        on_delete=models.CASCADE,
+    #                                        verbose_name=_('equipmentholder'))
 
     # active
     active = models.BooleanField(_('active'), default=True)
@@ -25,12 +25,12 @@ class Hospital(Location):
         # creation?
         created = self.pk is None
 
-        # create equipment holder?
-        try:
-            if created or self.equipmentholder is None:
-                self.equipmentholder = EquipmentHolder.objects.create()
-        except EquipmentHolder.DoesNotExist:
-            self.equipmentholder = EquipmentHolder.objects.create()
+        # # create equipment holder?
+        # try:
+        #     if created or self.equipmentholder is None:
+        #         self.equipmentholder = EquipmentHolder.objects.create()
+        # except EquipmentHolder.DoesNotExist:
+        #     self.equipmentholder = EquipmentHolder.objects.create()
 
         # enforce type hospital
         self.type = LocationType.h.name

@@ -16,7 +16,7 @@ from emstrack.models import AddressModel, UpdatedByModel, defaults, UpdatedByHis
 from emstrack.util import make_choices
 from emstrack.sms import client as sms_client
 
-from equipment.models import EquipmentHolder
+# from equipment.models import EquipmentHolder
 
 logger = logging.getLogger(__name__)
 
@@ -138,9 +138,9 @@ class Ambulance(PublishMixin,
 
     # TODO: Should we consider denormalizing Ambulance to avoid duplication with AmbulanceUpdate?
 
-    equipmentholder = models.OneToOneField(EquipmentHolder,
-                                           on_delete=models.CASCADE,
-                                           verbose_name=_('equipmentholder'))
+    # equipmentholder = models.OneToOneField(EquipmentHolder,
+    #                                        on_delete=models.CASCADE,
+    #                                        verbose_name=_('equipmentholder'))
 
     # ambulance properties
     identifier = models.CharField(_('identifier'), max_length=50, unique=True)
@@ -188,12 +188,12 @@ class Ambulance(PublishMixin,
         # loaded_values?
         loaded_values = self._loaded_values is not None
 
-        # create equipment holder?
-        try:
-            if created or self.equipmentholder is None:
-                self.equipmentholder = EquipmentHolder.objects.create()
-        except EquipmentHolder.DoesNotExist:
-            self.equipmentholder = EquipmentHolder.objects.create()
+        # # create equipment holder?
+        # try:
+        #     if created or self.equipmentholder is None:
+        #         self.equipmentholder = EquipmentHolder.objects.create()
+        # except EquipmentHolder.DoesNotExist:
+        #     self.equipmentholder = EquipmentHolder.objects.create()
 
         # has location changed?
         has_moved = False

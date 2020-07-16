@@ -107,24 +107,22 @@ class EquipmentSetItem(models.Model):
 class EquipmentHolder(models.Model):
 
     # Add temporary foreign keys before data migration
-    tmp_ambulance = models.ForeignKey('ambulance.Ambulance',
-                                      on_delete=models.CASCADE,
-                                      null=True, blank=True,
-                                      verbose_name=_('ambulance'),
-                                      related_name='+')
-    tmp_hospital = models.ForeignKey('hospital.Hospital',
-                                     on_delete=models.CASCADE,
-                                     null=True, blank=True,
-                                     verbose_name=_('hospital'),
-                                     related_name='+')
+    ambulance = models.ForeignKey('ambulance.Ambulance',
+                                  on_delete=models.CASCADE,
+                                  null=True, blank=True,
+                                  verbose_name=_('ambulance'))
+    hospital = models.ForeignKey('hospital.Hospital',
+                                 on_delete=models.CASCADE,
+                                 null=True, blank=True,
+                                 verbose_name=_('hospital'))
 
     equipmentsets = models.ManyToManyField(EquipmentSet, blank=True, verbose_name=_('equipmentsets'))
 
     def is_hospital(self):
-        return hasattr(self, 'hospital')
+        return self.hospital is not None
 
     def is_ambulance(self):
-        return hasattr(self, 'ambulance')
+        return self.ambulance is not None
 
     def get_type(self):
         if self.is_hospital():
