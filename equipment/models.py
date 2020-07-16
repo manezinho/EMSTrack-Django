@@ -110,11 +110,13 @@ class EquipmentHolder(models.Model):
     ambulance = models.ForeignKey('ambulance.Ambulance',
                                   on_delete=models.CASCADE,
                                   null=True, blank=True,
-                                  verbose_name=_('ambulance'))
+                                  verbose_name=_('ambulance'),
+                                  related_name='+')
     hospital = models.ForeignKey('hospital.Hospital',
                                  on_delete=models.CASCADE,
                                  null=True, blank=True,
-                                 verbose_name=_('hospital'))
+                                 verbose_name=_('hospital'),
+                                 related_name='+')
 
     equipmentsets = models.ManyToManyField(EquipmentSet, blank=True, verbose_name=_('equipmentsets'))
 
